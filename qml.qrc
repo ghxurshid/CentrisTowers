@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>BluetoohDevicesList.qml</file>
+        <file>BluetoothDeviceStatus.qml</file>
+        <file>CommandButton.qml</file>
+        <file>main.qml</file>
+        <file>Model.qml</file>
+        <file>SelectBox.qml</file>
+        <file>SwitchButton.qml</file>
+    </qresource>
+</RCC>
