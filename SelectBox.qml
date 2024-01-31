@@ -45,12 +45,11 @@ ComboBox {
         width: parent.height
         height: parent.height
         anchors.right: parent.right
-        Rectangle {
-            anchors.centerIn: parent
-            width: parent.width / 4
-            height: parent.height / 4
-            color: "white"
-            rotation: 45
+
+        Image {
+            anchors.fill: parent
+            anchors.margins: 14
+            source: "qrc:/img/combobox_icon.png"
         }
     }
     //        delegate: Item {

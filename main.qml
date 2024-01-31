@@ -11,7 +11,7 @@ ApplicationWindow {
     title: "Modern Window"
     color: "#27282C"
 
-    Rectangle {
+    Item {
         id: left_panel
         objectName: "left-panel"
         anchors {
@@ -20,8 +20,7 @@ ApplicationWindow {
             rightMargin: parent.width - 310
         }
         clip: true
-        color: "#333C43"
-        radius: 18
+        z: 2
 
         Model {
             id: listModel
@@ -81,12 +80,50 @@ ApplicationWindow {
                     id: homeSelect
                     model: listModel
                     onCurrentIndexChanged: {
-
+                        floorSelect.model = model.get(currentIndex).floorData
                     }
                 }
 
                 SwitchButton {
                     id: homeSwitch
+                }
+            }
+
+            Item {
+                height: 44
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: 10
+                }
+
+                SelectBox {
+                    id: floorSelect
+                    onCurrentIndexChanged: {
+                        var lotModel = currentIndex >= 0 ? model.get(currentIndex).lotData : null
+                        lotSelect.model = lotModel
+                    }
+                }
+
+                SwitchButton {
+                    id: floorSwitch
+                }
+            }
+
+            Item {
+                height: 44
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: 10
+                }
+
+                SelectBox {
+                    id: lotSelect
+                }
+
+                SwitchButton {
+                    id: lotSwitch
                 }
             }
         }
@@ -108,13 +145,12 @@ ApplicationWindow {
     }
 
     Image {
-        fillMode: Image.PreserveAspectFit
+        fillMode: Image.Stretch
         anchors {
             fill: parent
             margins: 10
-            leftMargin: 320
         }
-
+        z: 1
         source: "qrc:/img/plan.jpg"
     }
 }

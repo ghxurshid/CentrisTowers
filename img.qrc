@@ -6,5 +6,6 @@
         <file>img/bluetooth_connecting.png</file>
         <file>img/bluetooth_disabled.png</file>
         <file>img/plan.jpg</file>
+        <file>img/combobox_icon.png</file>
     </qresource>
 </RCC>

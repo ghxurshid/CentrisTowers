@@ -25,7 +25,7 @@ Switch {
         width: 40
         height: 20
         radius: 10
-        color: "#62C2FF"
+        color: "#52B2FF"
         anchors {
             centerIn: parent
             verticalCenter: parent.verticalCenter            

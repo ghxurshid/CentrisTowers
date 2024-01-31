@@ -14,22 +14,22 @@ Button {
     checkable: true
     background: Rectangle {
         id: background
-        color: "#68B8D1"
+        color: "#2A333A"
         radius: 5
-        opacity: 0.8
+        opacity: 1
 
         states: [
             State {
                 name: "pressed"
                 PropertyChanges {
                     target: background
-                    opacity: 1
+                    color: "#121212"
                 }
                 when: button.pressed
             }
         ]
 
-        Behavior on opacity {
+        Behavior on color {
             NumberAnimation { duration: 100; easing.type: Easing.Linear }
         }
     }
@@ -45,7 +45,7 @@ Button {
         height: 15
         width: 15
         radius: 7
-        color: "#333333"
+        color: "#747474"
 
         states: [
             State {
