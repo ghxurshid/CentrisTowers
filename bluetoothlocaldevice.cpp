@@ -63,18 +63,23 @@ void BluetoothLocalDevice::onErrorOccured(QBluetoothSocket::SocketError error)
     emit errorOccured(m_socket->errorString());
 }
 
-void BluetoothLocalDevice::sendData(bool allPressed, bool randPressed, bool homeOn, int homeValue)
+void BluetoothLocalDevice::sendData(bool allPressed, bool randPressed, bool blockOn, bool floorOn, bool lotOn, int blockValue, int floorValue, int lotValue)
 {
-    if (m_socket->isOpen() && m_socket->isWritable())
+    if ((m_socket->isOpen() && m_socket->isWritable()))
     {
-        QString formatedString = QString("**%1,%2,%3,%4##")
+        QString formatedString = QString("**%1,%2,%3,%4,%5,%6,%7,%8##")
                                         .arg(allPressed ? "1" : "0")
                                         .arg(randPressed ? "1" : "0")
-                                        .arg(homeOn ? "1" : "0")
-                                        .arg(homeValue > 0 ? homeValue : 0);
+                                        .arg(blockOn ? "1" : "0")
+                                        .arg(floorOn ? "1" : "0")
+                                        .arg(lotOn ? "1" : "0")
+                                        .arg(blockValue > 0 ? blockValue : 0)
+                                        .arg(floorValue > 0 ? floorValue : 0)
+                                        .arg(lotValue > 0 ? lotValue : 0);
 
-        formatedString.push_back('\n');
         auto packet = formatedString.toUtf8();
+        packet.push_back('\r');
+        packet.push_back('\n');
         m_socket->write(packet.constData(), packet.size());
     }
 }

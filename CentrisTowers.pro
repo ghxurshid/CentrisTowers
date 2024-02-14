@@ -32,8 +32,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 android {
+
     QT += androidextras
-    QMAKE_LINK += -nostdlib++    
+    QMAKE_LINK += -nostdlib++
+    OTHER_FILES += $$PWD/assets/images/B-3.jpg
 }
 
 DISTFILES += \

@@ -37,7 +37,8 @@ ApplicationWindow {
                 running: bluetoothDeviceStatus.localDevice.status === 0
                 onTriggered: {
                     bluetoothDeviceStatus.localDevice.sendData(allCommand.checked, randomCommand.checked,
-                                                               entranceSwitch.checked, entranceSelect.currentIndex)
+                                                               homeSwitch.checked, floorSwitch.checked, lotSwitch.checked,
+                                                               homeSelect.currentIndex, floorSelect.currentIndex, lotSelect.currentIndex)
                 }
             }
 
@@ -144,13 +145,101 @@ ApplicationWindow {
         }
     }
 
-    Image {
-        fillMode: Image.Stretch
+    /*Image {
         anchors {
-            fill: parent
+            top: parent.top
+            right: parent.right
+            bottom: parent.bottom
+            left: left_panel.right
             margins: 10
         }
         z: 1
-        source: "qrc:/img/plan.jpg"
+        source: lotSelect.currentIndex > 0 ? lotSelect.model.get(lotSelect.currentIndex).image :
+                floorSelect.currentIndex > 0 ? floorSelect.model.get(floorSelect.currentIndex).image :
+                homeSelect.currentIndex > 0 ? homeSelect.model.get(homeSelect.currentIndex).image :  "../assets/images/plan.jpg"
+    }*/
+    Item {
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: parent.bottom
+            left: left_panel.right
+            margins: 10
+        }
+
+        Image {
+            id: name
+            visible: false
+            anchors.fill: parent
+            source: "assets/icons/bluetooth_icon.png"
+        }
+
+
+        ListModel {
+            id: imageModel
+            ListElement { source: "qrc:/assets/slayds/IMG_7508.JPG" }
+            ListElement { source: "qrc:/assets/slayds/IMG_7512.JPG" }
+            ListElement { source: "qrc:/assets/slayds/IMG_7519.JPG" }
+            ListElement { source: "qrc:/assets/slayds/IMG_7522.JPG" }
+            ListElement { source: "qrc:/assets/slayds/IMG_7525.JPG" }
+            ListElement { source: "qrc:/assets/slayds/IMG_7529.JPG" }
+            ListElement { source: "qrc:/assets/slayds/IMG_7534.JPG" }
+            // Добавьте больше изображений, если необходимо
+        }
+
+        PathView {
+            id: pathView
+            width: parent.width
+            height: parent.height
+            model: imageModel
+            delegate: Image {
+                width: pathView.width
+                height: pathView.height
+                fillMode: Image.PreserveAspectFit
+                source: model.source
+            }
+
+            pathItemCount: imageModel.count // Устанавливаем количество элементов в списке равным количеству изображений
+            preferredHighlightBegin: 0.5
+            preferredHighlightEnd: 0.5
+
+            path: Path {
+                startX: pathView.width / 2
+                startY: pathView.height / 2
+                PathAttribute {
+                    name: "angle"
+                    value: 0
+                    //absolute: true
+                }
+                PathAttribute {
+                    name: "scale"
+                    value: 1
+                    //absolute: false
+                }
+                PathQuad {
+                    x: pathView.width / 2
+                    y: pathView.height / 2
+                    controlX: pathView.width / 2
+                    controlY: pathView.height / 2 + pathView.height * 3
+                }
+            }
+
+            onPathChanged: {
+                for (var i = 0; i < imageModel.count; ++i) {
+                    pathView.itemAt(i).angle = 360 / imageModel.count * i
+                }
+            }
+
+            Timer {
+                id: slideshowTimer
+                interval: 3000 // Интервал переключения между изображениями (в миллисекундах)
+                running: true
+                repeat: true
+                onTriggered: {
+                    var nextIndex = (pathView.currentIndex + 1) % imageModel.count
+                    pathView.incrementCurrentIndex()
+                }
+            }
+        }
     }
 }

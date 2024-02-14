@@ -49,7 +49,7 @@ ComboBox {
         Image {
             anchors.fill: parent
             anchors.margins: 14
-            source: "qrc:/img/combobox_icon.png"
+            source: "qrc:/assets/icons/combobox_icon.png"
         }
     }
     //        delegate: Item {
