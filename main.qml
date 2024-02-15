@@ -169,21 +169,19 @@ ApplicationWindow {
 
         Image {
             id: name
-            visible: false
+            source: "./assets/slayds/IMG_7512.JPG"// This is available in all editors.
             anchors.fill: parent
-            source: "assets/icons/bluetooth_icon.png"
         }
-
 
         ListModel {
             id: imageModel
-            ListElement { source: "qrc:/assets/slayds/IMG_7508.JPG" }
-            ListElement { source: "qrc:/assets/slayds/IMG_7512.JPG" }
-            ListElement { source: "qrc:/assets/slayds/IMG_7519.JPG" }
-            ListElement { source: "qrc:/assets/slayds/IMG_7522.JPG" }
-            ListElement { source: "qrc:/assets/slayds/IMG_7525.JPG" }
-            ListElement { source: "qrc:/assets/slayds/IMG_7529.JPG" }
-            ListElement { source: "qrc:/assets/slayds/IMG_7534.JPG" }
+            ListElement { source: "./assets/slayds/IMG_7508.JPG" }
+            ListElement { source: "./assets/slayds/IMG_7512.JPG" }
+            ListElement { source: "./assets/slayds/IMG_7519.JPG" }
+            ListElement { source: "./assets/slayds/IMG_7522.JPG" }
+            ListElement { source: "./assets/slayds/IMG_7525.JPG" }
+            ListElement { source: "./assets/slayds/IMG_7529.JPG" }
+            ListElement { source: "./assets/slayds/IMG_7534.JPG" }
             // Добавьте больше изображений, если необходимо
         }
 
@@ -196,7 +194,7 @@ ApplicationWindow {
                 width: pathView.width
                 height: pathView.height
                 fillMode: Image.PreserveAspectFit
-                source: model.source
+                source: "assets/slayds/IMG_7508.JPG"
             }
 
             pathItemCount: imageModel.count // Устанавливаем количество элементов в списке равным количеству изображений

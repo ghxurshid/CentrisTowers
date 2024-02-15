@@ -82,7 +82,7 @@ Row {
             background: Image {
                 id: backgroundImage
                 anchors.fill: parent
-                source: "qrc:/assets/icons/bluetooth_disabled.png"
+                source: "qrc:/resources/icons/bluetooth_disabled.png"
             }
             scale: pressed ? 1.1 : 1
 
@@ -99,7 +99,7 @@ Row {
                     name: "disabled"
                     PropertyChanges {
                         target: backgroundImage
-                        source: "qrc:/assets/icons/bluetooth_disabled.png"
+                        source: "qrc:/resources/icons/bluetooth_disabled.png"
                         opacity: 1
                     }
                     when: localDevice.status === 2
@@ -108,7 +108,7 @@ Row {
                     name: "connecting"
                     PropertyChanges {
                         target: backgroundImage
-                        source: "qrc:/assets/icons/bluetooth_connecting.png"
+                        source: "qrc:/resources/icons/bluetooth_connecting.png"
                     }
                     when: localDevice.status === 1
 
@@ -117,7 +117,7 @@ Row {
                     name: "enabled"
                     PropertyChanges {
                         target: backgroundImage
-                        source: "qrc:/assets/icons/bluetooth_enabled.png"
+                        source: "qrc:/resources/icons/bluetooth_enabled.png"
                         opacity: 1
                     }
                     when: localDevice.status === 0

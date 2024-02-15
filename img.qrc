@@ -1,16 +1,9 @@
 <RCC>
     <qresource prefix="/">
-        <file>assets/icons/bluetooth_connecting.png</file>
-        <file>assets/icons/bluetooth_disabled.png</file>
-        <file>assets/icons/bluetooth_enabled.png</file>
-        <file>assets/icons/bluetooth_icon.png</file>
-        <file>assets/icons/combobox_icon.png</file>
-        <file>assets/slayds/IMG_7508.JPG</file>
-        <file>assets/slayds/IMG_7512.JPG</file>
-        <file>assets/slayds/IMG_7519.JPG</file>
-        <file>assets/slayds/IMG_7522.JPG</file>
-        <file>assets/slayds/IMG_7525.JPG</file>
-        <file>assets/slayds/IMG_7529.JPG</file>
-        <file>assets/slayds/IMG_7534.JPG</file>
+        <file>resources/icons/bluetooth_connecting.png</file>
+        <file>resources/icons/bluetooth_disabled.png</file>
+        <file>resources/icons/bluetooth_enabled.png</file>
+        <file>resources/icons/bluetooth_icon.png</file>
+        <file>resources/icons/combobox_icon.png</file>
     </qresource>
 </RCC>

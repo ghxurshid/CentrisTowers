@@ -78,7 +78,7 @@ ListView {
                 anchors.centerIn: parent
                 height: 20
                 width: 20
-                source: "qrc:/assets/icons/bluetooth_icon.png"
+                source: "qrc:/resources/icons/bluetooth_icon.png"
             }
         }
 
