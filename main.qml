@@ -166,35 +166,64 @@ ApplicationWindow {
             left: left_panel.right
             margins: 10
         }
+        clip: true
 
         Image {
-            id: name
-            source: "./assets/slayds/IMG_7512.JPG"// This is available in all editors.
+            id: image
             anchors.fill: parent
-        }
-
-        ListModel {
-            id: imageModel
-            ListElement { source: "./assets/slayds/IMG_7508.JPG" }
-            ListElement { source: "./assets/slayds/IMG_7512.JPG" }
-            ListElement { source: "./assets/slayds/IMG_7519.JPG" }
-            ListElement { source: "./assets/slayds/IMG_7522.JPG" }
-            ListElement { source: "./assets/slayds/IMG_7525.JPG" }
-            ListElement { source: "./assets/slayds/IMG_7529.JPG" }
-            ListElement { source: "./assets/slayds/IMG_7534.JPG" }
-            // Добавьте больше изображений, если необходимо
+            fillMode: Image.PreserveAspectFit
+            visible: floorSelect.currentIndex > 0
+            source: lotSelect.currentIndex > 0 ? lotSelect.model.get(lotSelect.currentIndex).image :
+                    floorSelect.currentIndex > 0 ? floorSelect.model.get(floorSelect.currentIndex).image :
+                    homeSelect.currentIndex > 0 ? homeSelect.model.get(homeSelect.currentIndex).image : ""
         }
 
         PathView {
             id: pathView
-            width: parent.width
-            height: parent.height
-            model: imageModel
+            anchors.fill: parent
+            visible: !(floorSelect.currentIndex > 0)
+            model: ListModel {
+                id: imageModel
+                ListElement { source: "assets:/slayds/IMG_7508.JPG" }
+                ListElement { source: "assets:/slayds/IMG_7512.JPG" }
+                ListElement { source: "assets:/slayds/IMG_7519.JPG" }
+                ListElement { source: "assets:/slayds/IMG_7522.JPG" }
+                ListElement { source: "assets:/slayds/IMG_7525.JPG" }
+                ListElement { source: "assets:/slayds/IMG_7529.JPG" }
+                ListElement { source: "assets:/slayds/IMG_7534.JPG" }
+
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/slayds/IMG_7508.JPG" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/slayds/IMG_7512.JPG" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/slayds/IMG_7519.JPG" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/slayds/IMG_7522.JPG" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/slayds/IMG_7525.JPG" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/slayds/IMG_7529.JPG" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/slayds/IMG_7534.JPG" }
+
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-2.jpg" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-3.jpg" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-4.jpg" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-5.jpg" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-6.jpg" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-7.jpg" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-8.jpg" }
+//                ListElement { source: "file:/WorkPath/QT/CentrisTowers/src/resources/assets/images/C-9.jpg" }
+
+            }
             delegate: Image {
                 width: pathView.width
                 height: pathView.height
                 fillMode: Image.PreserveAspectFit
-                source: "assets/slayds/IMG_7508.JPG"
+                source: model.source
+                opacity: PathView.isCurrentItem ? 1 : 0
+                z: PathView.isCurrentItem ? 1 : 0
+
+                Behavior on opacity {
+                    NumberAnimation {
+                        id: fadeAnimation
+                        duration: 400 // Длительность анимации перехода
+                    }
+                }
             }
 
             pathItemCount: imageModel.count // Устанавливаем количество элементов в списке равным количеству изображений
@@ -202,30 +231,12 @@ ApplicationWindow {
             preferredHighlightEnd: 0.5
 
             path: Path {
-                startX: pathView.width / 2
-                startY: pathView.height / 2
-                PathAttribute {
-                    name: "angle"
-                    value: 0
-                    //absolute: true
-                }
-                PathAttribute {
-                    name: "scale"
-                    value: 1
-                    //absolute: false
-                }
-                PathQuad {
-                    x: pathView.width / 2
-                    y: pathView.height / 2
-                    controlX: pathView.width / 2
-                    controlY: pathView.height / 2 + pathView.height * 3
-                }
-            }
-
-            onPathChanged: {
-                for (var i = 0; i < imageModel.count; ++i) {
-                    pathView.itemAt(i).angle = 360 / imageModel.count * i
-                }
+                startX: pathView.width / 2;        startY: - pathView.height / 2
+                PathLine { x: -   pathView.width / 2;     y: - pathView.height / 2; }
+                PathLine { x: -   pathView.width / 2;     y:   pathView.height / 2; }
+                PathLine { x: 3 * pathView.width / 2;     y:   pathView.height / 2; }
+                PathLine { x: 3 * pathView.width / 2;     y: - pathView.height / 2; }
+                PathLine { x:     pathView.width / 2;     y: - pathView.height / 2; }
             }
 
             Timer {
