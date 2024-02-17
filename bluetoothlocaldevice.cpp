@@ -84,6 +84,19 @@ void BluetoothLocalDevice::sendData(bool allPressed, bool randPressed, bool bloc
     }
 }
 
+void BluetoothLocalDevice::sendData2(QString cmd)
+{qDebug() << cmd;
+    if ((m_socket->isOpen() && m_socket->isWritable()))
+    {
+        QString formatedString = cmd;
+
+        auto packet = formatedString.toUtf8();
+        packet.push_back('\r');
+        packet.push_back('\n');
+        m_socket->write(packet.constData(), packet.size());
+    }
+}
+
 void BluetoothLocalDevice::onSelected(const QBluetoothDeviceInfo deviceInfo)
 {
     disconnectFromSelectedDevice();

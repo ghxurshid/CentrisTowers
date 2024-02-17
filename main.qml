@@ -31,16 +31,16 @@ ApplicationWindow {
             anchors.margins: 10
             spacing: 10
 
-            Timer {
-                interval: 200
-                repeat: true
-                running: bluetoothDeviceStatus.localDevice.status === 0
-                onTriggered: {
-                    bluetoothDeviceStatus.localDevice.sendData(allCommand.checked, randomCommand.checked,
-                                                               homeSwitch.checked, floorSwitch.checked, lotSwitch.checked,
-                                                               homeSelect.currentIndex, floorSelect.currentIndex, lotSelect.currentIndex)
-                }
-            }
+//            Timer {
+//                interval: 200
+//                repeat: true
+//                running: bluetoothDeviceStatus.localDevice.status === 0
+//                onTriggered: {
+//                    bluetoothDeviceStatus.localDevice.sendData(allCommand.checked, randomCommand.checked,
+//                                                               homeSwitch.checked, floorSwitch.checked, lotSwitch.checked,
+//                                                               homeSelect.currentIndex, floorSelect.currentIndex, lotSelect.currentIndex)
+//                }
+//            }
 
             BluetoothDeviceStatus {
                 id: bluetoothDeviceStatus
@@ -62,11 +62,26 @@ ApplicationWindow {
             CommandButton {
                 id: allCommand
                 text: qsTr("ALL")
+                onClicked: {
+                    if (allCommand.checked) {
+                        bluetoothDeviceStatus.localDevice.sendData2("W1")
+                    } else {
+                        bluetoothDeviceStatus.localDevice.sendData2("W0")
+                    }
+                }
             }
 
             CommandButton {
                 id: randomCommand
                 text: qsTr("RANDOM")
+
+                onClicked: {
+                    if (randomCommand.checked) {
+                        bluetoothDeviceStatus.localDevice.sendData2("Z1")
+                    } else {
+                        bluetoothDeviceStatus.localDevice.sendData2("Z0")
+                    }
+                }
             }
 
             Item {
@@ -103,6 +118,10 @@ ApplicationWindow {
                     onCurrentIndexChanged: {
                         var lotModel = currentIndex >= 0 ? model.get(currentIndex).lotData : null
                         lotSelect.model = lotModel
+
+                        if (currentIndex > 0 && lotModel.count === 0) {
+                            bluetoothDeviceStatus.localDevice.sendData2(model.get(currentIndex).command)
+                        }
                     }
                 }
 
@@ -121,6 +140,11 @@ ApplicationWindow {
 
                 SelectBox {
                     id: lotSelect
+                    onCurrentIndexChanged: {
+                        if (currentIndex > 0) {
+                            bluetoothDeviceStatus.localDevice.sendData2(model.get(currentIndex).command)
+                        }
+                    }
                 }
 
                 SwitchButton {
