@@ -85,7 +85,7 @@ void BluetoothLocalDevice::sendData(bool allPressed, bool randPressed, bool bloc
 }
 
 void BluetoothLocalDevice::sendData2(QString cmd)
-{
+{qDebug() << cmd;
     if ((m_socket->isOpen() && m_socket->isWritable()))
     {
         QString formatedString = cmd;
@@ -95,8 +95,12 @@ void BluetoothLocalDevice::sendData2(QString cmd)
 
         if (ok)
         {
-            QByteArray data = QByteArray::number(value);
-            m_socket->write(data);
+            QByteArray data;
+            QDataStream stream(&data, QIODevice::WriteOnly);
+            stream << value;
+
+            if (data.size() == 4)
+                m_socket->write(data);
         }
     }
 }
