@@ -412,16 +412,16 @@ ListModel {
                 modelData: "Этаж 4"
                 lotData: [
                     ListElement { modelData: "Выберите лот" },
-                    ListElement { modelData: "Лот 21"; image: "assets:/images/F-G-4-21.jpg"; command: "4421" },
-                    ListElement { modelData: "Лот 23"; image: "assets:/images/F-G-4-23.jpg"; command: "4423" },
-                    ListElement { modelData: "Лот 24"; image: "assets:/images/F-G-4-24.jpg"; command: "4424" },
-                    ListElement { modelData: "Лот 25"; image: "assets:/images/F-G-4-25.jpg"; command: "4425" },
-                    ListElement { modelData: "Лот 26"; image: "assets:/images/F-G-4-26.jpg"; command: "4426" },
-                    ListElement { modelData: "Лот 27"; image: "assets:/images/F-G-4-27.jpg"; command: "4427" },
-                    ListElement { modelData: "Лот 28"; image: "assets:/images/F-G-4-28.jpg"; command: "4428" },
-                    ListElement { modelData: "Лот 29"; image: "assets:/images/F-G-4-29.jpg"; command: "4429" },
-                    ListElement { modelData: "Лот 30"; image: "assets:/images/F-G-4-30.jpg"; command: "4430" },
-                    ListElement { modelData: "Лот 31"; image: "assets:/images/F-G-4-31.jpg"; command: "4431" }
+                    ListElement { modelData: "Лот 21"; image: "assets:/images/F-G-4-21.jpg"; command: "441" },
+                    ListElement { modelData: "Лот 23"; image: "assets:/images/F-G-4-23.jpg"; command: "443" },
+                    ListElement { modelData: "Лот 24"; image: "assets:/images/F-G-4-24.jpg"; command: "444" },
+                    ListElement { modelData: "Лот 25"; image: "assets:/images/F-G-4-25.jpg"; command: "445" },
+                    ListElement { modelData: "Лот 26"; image: "assets:/images/F-G-4-26.jpg"; command: "446" },
+                    ListElement { modelData: "Лот 27"; image: "assets:/images/F-G-4-27.jpg"; command: "447" },
+                    ListElement { modelData: "Лот 28"; image: "assets:/images/F-G-4-28.jpg"; command: "448" },
+                    ListElement { modelData: "Лот 29"; image: "assets:/images/F-G-4-29.jpg"; command: "449" },
+                    ListElement { modelData: "Лот 30"; image: "assets:/images/F-G-4-30.jpg"; command: "4410" },
+                    ListElement { modelData: "Лот 31"; image: "assets:/images/F-G-4-31.jpg"; command: "4411" }
                 ]
                 image: "assets:/images/F-G-4.jpg"
                 command: "44"
@@ -430,17 +430,17 @@ ListModel {
                 modelData: "Этаж 5"
                 lotData: [
                     ListElement { modelData: "Выберите лот" },
-                    ListElement { modelData: "Лот 32"; image: "assets:/images/F-G-5-32.jpg"; command: "4532" },
-                    ListElement { modelData: "Лот 33"; image: "assets:/images/F-G-5-33.jpg"; command: "4533" },
-                    ListElement { modelData: "Лот 34"; image: "assets:/images/F-G-5-34.jpg"; command: "4534" },
-                    ListElement { modelData: "Лот 35"; image: "assets:/images/F-G-5-35.jpg"; command: "4535" },
-                    ListElement { modelData: "Лот 36"; image: "assets:/images/F-G-5-36.jpg"; command: "4536" },
-                    ListElement { modelData: "Лот 37"; image: "assets:/images/F-G-5-37.jpg"; command: "4537" },
-                    ListElement { modelData: "Лот 38"; image: "assets:/images/F-G-5-38.jpg"; command: "4538" },
-                    ListElement { modelData: "Лот 39"; image: "assets:/images/F-G-5-39.jpg"; command: "4539" },
-                    ListElement { modelData: "Лот 40"; image: "assets:/images/F-G-5-40.jpg"; command: "4540" },
-                    ListElement { modelData: "Лот 41"; image: "assets:/images/F-G-5-41.jpg"; command: "4541" },
-                    ListElement { modelData: "Лот 42"; image: "assets:/images/F-G-5-42.jpg"; command: "4542" }
+                    ListElement { modelData: "Лот 32"; image: "assets:/images/F-G-5-32.jpg"; command: "451" },
+                    ListElement { modelData: "Лот 33"; image: "assets:/images/F-G-5-33.jpg"; command: "452" },
+                    ListElement { modelData: "Лот 34"; image: "assets:/images/F-G-5-34.jpg"; command: "453" },
+                    ListElement { modelData: "Лот 35"; image: "assets:/images/F-G-5-35.jpg"; command: "454" },
+                    ListElement { modelData: "Лот 36"; image: "assets:/images/F-G-5-36.jpg"; command: "455" },
+                    ListElement { modelData: "Лот 37"; image: "assets:/images/F-G-5-37.jpg"; command: "456" },
+                    ListElement { modelData: "Лот 38"; image: "assets:/images/F-G-5-38.jpg"; command: "457" },
+                    ListElement { modelData: "Лот 39"; image: "assets:/images/F-G-5-39.jpg"; command: "458" },
+                    ListElement { modelData: "Лот 40"; image: "assets:/images/F-G-5-40.jpg"; command: "459" },
+                    ListElement { modelData: "Лот 41"; image: "assets:/images/F-G-5-41.jpg"; command: "4510" },
+                    ListElement { modelData: "Лот 42"; image: "assets:/images/F-G-5-42.jpg"; command: "4511" }
                 ]
                 image: "assets:/images/F-G-5.jpg"
                 command: "45"
