@@ -59,27 +59,41 @@ ApplicationWindow {
                 }
             }
 
+            Timer {
+                id: delayTimer
+                interval: 3000
+                running: false
+                repeat: false
+            }
+
             CommandButton {
                 id: allCommand
                 text: qsTr("ALL")
+                enabled: !delayTimer.running
                 onClicked: {
                     if (allCommand.checked) {
                         bluetoothDeviceStatus.localDevice.sendData2("1")
                     } else {
                         bluetoothDeviceStatus.localDevice.sendData2("2")
                     }
+                    delayTimer.start()
                 }
             }
 
             CommandButton {
                 id: randomCommand
                 text: qsTr("RANDOM")
+                enabled: !delayTimer.running
+                onClicked: {                    
+                    delayTimer.start()
+                }
 
-                onClicked: {
-                    if (randomCommand.checked) {
-                        bluetoothDeviceStatus.localDevice.sendData2("3")
-                    } else {
-                        bluetoothDeviceStatus.localDevice.sendData2("4")
+                Timer {
+                    interval: 1000
+                    repeat: true
+                    running: randomCommand.checked
+                    onTriggered: {
+                        bluetoothDeviceStatus.localDevice.sendData2("7")
                     }
                 }
             }

@@ -36,15 +36,15 @@ int BluetoothLocalDevice::status()
 
     switch (m_socket->state())
     {
-        case QBluetoothSocket::UnconnectedState:
-        case QBluetoothSocket::BoundState: state = 2; break;
+    case QBluetoothSocket::UnconnectedState:
+    case QBluetoothSocket::BoundState: state = 2; break;
 
-        case QBluetoothSocket::ServiceLookupState:
-        case QBluetoothSocket::ConnectingState: state = 1; break;
+    case QBluetoothSocket::ServiceLookupState:
+    case QBluetoothSocket::ConnectingState: state = 1; break;
 
-        case QBluetoothSocket::ConnectedState:
-        case QBluetoothSocket::ListeningState:
-        case QBluetoothSocket::ClosingState: state = 0; break;
+    case QBluetoothSocket::ConnectedState:
+    case QBluetoothSocket::ListeningState:
+    case QBluetoothSocket::ClosingState: state = 0; break;
     }
 
     return state;
@@ -59,7 +59,7 @@ void BluetoothLocalDevice::buttonClick()
 
 void BluetoothLocalDevice::onErrorOccured(QBluetoothSocket::SocketError error)
 {
-    Q_UNUSED(error);   
+    Q_UNUSED(error);
     emit errorOccured(m_socket->errorString());
 }
 
@@ -68,14 +68,14 @@ void BluetoothLocalDevice::sendData(bool allPressed, bool randPressed, bool bloc
     if ((m_socket->isOpen() && m_socket->isWritable()))
     {
         QString formatedString = QString("**%1,%2,%3,%4,%5,%6,%7,%8##")
-                                        .arg(allPressed ? "1" : "0")
-                                        .arg(randPressed ? "1" : "0")
-                                        .arg(blockOn ? "1" : "0")
-                                        .arg(floorOn ? "1" : "0")
-                                        .arg(lotOn ? "1" : "0")
-                                        .arg(blockValue > 0 ? blockValue : 0)
-                                        .arg(floorValue > 0 ? floorValue : 0)
-                                        .arg(lotValue > 0 ? lotValue : 0);
+                .arg(allPressed ? "1" : "0")
+                .arg(randPressed ? "1" : "0")
+                .arg(blockOn ? "1" : "0")
+                .arg(floorOn ? "1" : "0")
+                .arg(lotOn ? "1" : "0")
+                .arg(blockValue > 0 ? blockValue : 0)
+                .arg(floorValue > 0 ? floorValue : 0)
+                .arg(lotValue > 0 ? lotValue : 0);
 
         auto packet = formatedString.toUtf8();
         packet.push_back('\r');
