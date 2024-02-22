@@ -413,15 +413,15 @@ ListModel {
                 lotData: [
                     ListElement { modelData: "Выберите лот" },
                     ListElement { modelData: "Лот 21"; image: "assets:/images/F-G-4-21.jpg"; command: "441" },
-                    ListElement { modelData: "Лот 23"; image: "assets:/images/F-G-4-23.jpg"; command: "443" },
-                    ListElement { modelData: "Лот 24"; image: "assets:/images/F-G-4-24.jpg"; command: "444" },
-                    ListElement { modelData: "Лот 25"; image: "assets:/images/F-G-4-25.jpg"; command: "445" },
-                    ListElement { modelData: "Лот 26"; image: "assets:/images/F-G-4-26.jpg"; command: "446" },
-                    ListElement { modelData: "Лот 27"; image: "assets:/images/F-G-4-27.jpg"; command: "447" },
-                    ListElement { modelData: "Лот 28"; image: "assets:/images/F-G-4-28.jpg"; command: "448" },
-                    ListElement { modelData: "Лот 29"; image: "assets:/images/F-G-4-29.jpg"; command: "449" },
-                    ListElement { modelData: "Лот 30"; image: "assets:/images/F-G-4-30.jpg"; command: "4410" },
-                    ListElement { modelData: "Лот 31"; image: "assets:/images/F-G-4-31.jpg"; command: "4411" }
+                    ListElement { modelData: "Лот 23"; image: "assets:/images/F-G-4-23.jpg"; command: "442" },
+                    ListElement { modelData: "Лот 24"; image: "assets:/images/F-G-4-24.jpg"; command: "443" },
+                    ListElement { modelData: "Лот 25"; image: "assets:/images/F-G-4-25.jpg"; command: "444" },
+                    ListElement { modelData: "Лот 26"; image: "assets:/images/F-G-4-26.jpg"; command: "445" },
+                    ListElement { modelData: "Лот 27"; image: "assets:/images/F-G-4-27.jpg"; command: "446" },
+                    ListElement { modelData: "Лот 28"; image: "assets:/images/F-G-4-28.jpg"; command: "447" },
+                    ListElement { modelData: "Лот 29"; image: "assets:/images/F-G-4-29.jpg"; command: "448" },
+                    ListElement { modelData: "Лот 30"; image: "assets:/images/F-G-4-30.jpg"; command: "449" },
+                    ListElement { modelData: "Лот 31"; image: "assets:/images/F-G-4-31.jpg"; command: "4410" }
                 ]
                 image: "assets:/images/F-G-4.jpg"
                 command: "44"

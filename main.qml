@@ -64,9 +64,9 @@ ApplicationWindow {
                 text: qsTr("ALL")
                 onClicked: {
                     if (allCommand.checked) {
-                        bluetoothDeviceStatus.localDevice.sendData2("W1")
+                        bluetoothDeviceStatus.localDevice.sendData2("1")
                     } else {
-                        bluetoothDeviceStatus.localDevice.sendData2("W0")
+                        bluetoothDeviceStatus.localDevice.sendData2("2")
                     }
                 }
             }
@@ -77,9 +77,9 @@ ApplicationWindow {
 
                 onClicked: {
                     if (randomCommand.checked) {
-                        bluetoothDeviceStatus.localDevice.sendData2("Z1")
+                        bluetoothDeviceStatus.localDevice.sendData2("3")
                     } else {
-                        bluetoothDeviceStatus.localDevice.sendData2("Z0")
+                        bluetoothDeviceStatus.localDevice.sendData2("4")
                     }
                 }
             }
