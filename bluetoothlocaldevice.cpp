@@ -97,26 +97,12 @@ void BluetoothLocalDevice::sendData2(QString cmd)
 
         if (ok)
         {
-            QByteArray data;
-            data.push_back(static_cast<char>((value >> 0) & 0xFF));
-            data.push_back(static_cast<char>((value >> 8) & 0xFF));
-            data.push_back(static_cast<char>((value >> 16) & 0xFF));
-            data.push_back(static_cast<char>((value >> 24) & 0xFF));
+            QByteArray data = QByteArray::number(value);
 
 #ifndef Q_OS_ANDROID
-            QString msg;
-            for (int i = 0 ; i < 4; i ++)
-            {
-                for (int j = 0 ; j < 8; j ++ )
-                {
-                   msg += QString::number((data[i] >> j) & 0x01);
-                }
-                msg += " ";
-            }
-            qDebug() << msg;
+            qDebug() << data;
 #endif
-            if (data.size() == 4)
-                m_socket->write(data);
+            m_socket->write(data);
         }
     }
 }
