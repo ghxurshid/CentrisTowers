@@ -414,6 +414,7 @@ ListModel {
                     ListElement { modelData: "Выберите лот" },
                     ListElement { modelData: "Лот 20"; image: "assets:/images/F-G-4-21.jpg"; command: "4411" },
                     ListElement { modelData: "Лот 21"; image: "assets:/images/F-G-4-21.jpg"; command: "441" },
+                    ListElement { modelData: "Лот 22"; image: "assets:/images/F-G-4-22.jpg"; command: "4412" },
                     ListElement { modelData: "Лот 23"; image: "assets:/images/F-G-4-23.jpg"; command: "442" },
                     ListElement { modelData: "Лот 24"; image: "assets:/images/F-G-4-24.jpg"; command: "443" },
                     ListElement { modelData: "Лот 25"; image: "assets:/images/F-G-4-25.jpg"; command: "444" },
