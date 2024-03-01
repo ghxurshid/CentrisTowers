@@ -158,13 +158,25 @@ ListView {
 
             Text {
                 id: footerText
-                text: qsTr("More Bluetooth settings")
+                text: listView.model.isDiscoveryActive ? qsTr("Searching ...") : qsTr("Available devices")
                 color: "#2D78D5"
                 anchors {
                     left: parent.left
                     leftMargin: 10
                     verticalCenter: parent.verticalCenter
                 }
+            }
+
+            AnimatedImage  {
+                anchors {
+                    top: parent.top
+                    right: parent.right
+                    bottom: parent.bottom
+                    margins: 10
+                }
+                visible: listView.model.isDiscoveryActive
+                width: height
+                source: "resources/icons/loading-gif.gif"
             }
         }
     }
@@ -181,5 +193,9 @@ ListView {
 
     Behavior on height {
         NumberAnimation { duration: 600; easing.type: Easing.OutQuart }
+    }
+
+    onContentYChanged: {
+        if (atYEnd && dragging) listView.model.onYAtEndArrived()
     }
 }

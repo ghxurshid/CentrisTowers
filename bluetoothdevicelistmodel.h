@@ -10,6 +10,7 @@
 class BluetoothDeviceListModel : public QAbstractListModel
 {
     Q_OBJECT
+    Q_PROPERTY(bool isDiscoveryActive READ isDiscoveryActive NOTIFY discoveryStatusChanged)
 public:
     explicit BluetoothDeviceListModel(QObject *parent = nullptr);
 
@@ -25,9 +26,11 @@ public:
     QVariant data(const QModelIndex &index, int role) const override;
 
     Q_INVOKABLE void select(int index);
+    Q_INVOKABLE void onYAtEndArrived();
 
 signals:
     void selected(const QBluetoothDeviceInfo deviceInfo);
+    void discoveryStatusChanged();
 
 public slots:
     void onCancelled();
@@ -39,6 +42,8 @@ public slots:
 protected:
     QHash<int, QByteArray> roleNames() const override;
 
+    void startDiscovery();
+    bool isDiscoveryActive();
 private:
     QVector<QBluetoothDeviceInfo> m_devices;
     QBluetoothDeviceDiscoveryAgent m_agent;

@@ -11,20 +11,26 @@ BluetoothDeviceListModel::BluetoothDeviceListModel(QObject *parent)
     QObject::connect(&m_agent, &QBluetoothDeviceDiscoveryAgent::deviceUpdated, this, &BluetoothDeviceListModel::onDeviceUpdated);
     QObject::connect(&m_agent, &QBluetoothDeviceDiscoveryAgent::finished, this, &BluetoothDeviceListModel::onFinished);
 
-    qDebug() << QBluetoothDeviceDiscoveryAgent::supportedDiscoveryMethods();
-    qDebug() << m_agent.inquiryType();
-    qDebug() << m_agent.isActive();
-    qDebug() << m_agent.lowEnergyDiscoveryTimeout();
-
     if (QSysInfo::productType() == "windows")
     {
         m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("00:11:22:33:44:55"), QString("Device 123456789456789123456"), 5));
         m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("55:44:33:22:11:00"), QString("Device 265986522548754123145"), 10));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("11:22:33:44:55:66"), QString("Device 987654321987654321987"), 15));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("22:33:44:55:66:77"), QString("Device 741852963741852963741"), 20));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("33:44:55:66:77:88"), QString("Device 369258147369258147369"), 25));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("44:55:66:77:88:99"), QString("Device 159263748159263748159"), 30));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("55:66:77:88:99:00"), QString("Device 852147963852147963852"), 35));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("66:77:88:99:00:11"), QString("Device 963852741963852741963"), 40));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("77:88:99:00:11:22"), QString("Device 123456789123456789123"), 45));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("88:99:00:11:22:33"), QString("Device 456789123456789123456"), 50));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("99:00:11:22:33:44"), QString("Device 789123456789123456789"), 55));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("AA:BB:CC:DD:EE:FF"), QString("Device 147258369147258369147"), 60));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("BB:CC:DD:EE:FF:AA"), QString("Device 258369147258369147258"), 65));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("CC:DD:EE:FF:AA:BB"), QString("Device 369147258369147258369"), 70));
+//        m_devices.append(QBluetoothDeviceInfo(QBluetoothAddress("DD:EE:FF:AA:BB:CC"), QString("Device 123456789123456789123"), 75));
     }
 
-    m_agent.start();
-
-    qDebug("Discovery agent started");
+    startDiscovery();
 }
 
 int BluetoothDeviceListModel::rowCount(const QModelIndex &parent) const
@@ -63,6 +69,16 @@ void BluetoothDeviceListModel::select(int index)
     if (index < 0 || index >= m_devices.count()) return;
     auto device = m_devices[index];
     emit selected(device);
+}
+
+void BluetoothDeviceListModel::onYAtEndArrived()
+{
+    if (!isDiscoveryActive()) startDiscovery();
+}
+
+bool BluetoothDeviceListModel::isDiscoveryActive()
+{
+    return m_agent.isActive();
 }
 
 void BluetoothDeviceListModel::onCancelled()
@@ -108,12 +124,8 @@ void BluetoothDeviceListModel::onError(QBluetoothDeviceDiscoveryAgent::Error err
 void BluetoothDeviceListModel::onFinished()
 {
     auto devices = m_agent.discoveredDevices();
-    qDebug() << "= = = Devices list = = =";
-    foreach (auto device, devices)
-    {
-        qDebug() << (device.name().isEmpty() ? device.address().toString() : device.name());
-    }
-    qDebug() << "= = = = = = = = = = = =";
+    emit discoveryStatusChanged();
+
 }
 
 QHash<int, QByteArray> BluetoothDeviceListModel::roleNames() const
@@ -124,4 +136,10 @@ QHash<int, QByteArray> BluetoothDeviceListModel::roleNames() const
     roles[Rssi] = "rssi";
     roles[IsValid] = "isValid";
     return roles;
+}
+
+void BluetoothDeviceListModel::startDiscovery()
+{
+    m_agent.start();
+    emit discoveryStatusChanged();
 }
